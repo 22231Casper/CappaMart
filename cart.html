@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Main script -->
+<script src="/scripts/main.js"></script>
+<!-- Head -->
+<script id="head" src="/scripts/head.js"></script>
+<body>
+    <!-- Navbar -->
+    <script id="nav" src="/scripts/nav.js"></script>
+
+    <!-- Body -->
+    <h1>Cart (WIP)</h1>
+
+    <!-- Cart test -->
+    <script id="delay_cartTest"></script>
+    <div id="cartTest"></div>
+
+    <!-- Entire container -->
+    <div class="flex" id="cart">
+        <!-- On the left -->
+        <div class="scrollable left flex vertical">
+            <!-- Auto-generated cart display -->
+            <script id="cart" src="/scripts/cart.js"></script>
+            <div id="cartDisplay"></div>
+        </div>
+        
+        <!-- On the right -->
+        <div class="flex right vertical">
+            <div class="highlight flex vertical">
+                <!-- Price -->
+                <div class="flex">
+                    <div class="left"><p>Total price:</p></div>
+                    <div class="right"><p>$CB 2.5</p></div>
+                </div>
+                <!-- Buy button -->
+                <div class="flex">
+                    <button class="button flex" onclick="buyButton()" style="width: 100%;">
+                        <div class="left"><p>Purchase</p></div>
+                        <div class="right"><p>&rarrlp;</p></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script id="footer" src="/scripts/footer.js"></script>
+</body>
+
+</html>

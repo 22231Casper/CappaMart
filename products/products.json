@@ -1,0 +1,109 @@
+{
+    "products": [
+        {
+            "productName": "image",
+            "imageName": "image.png",
+            "description": "this is a place holder image that we use for testing",
+            "price": 5.5,
+            "link": "image.html"
+        },
+        {
+            "productName": "Banan",
+            "imageName": "Banan.jpg",
+            "description": "This is a banan frfr.<br>Held by Niv",
+            "price": 2.5,
+            "link": "banan.html"
+        },
+        {
+            "productName": "deshomanwhop",
+            "imageName": "deshomanwhop.png",
+            "description": "deshomanwhop, made by Damagmark.",
+            "price": 250,
+            "link": "deshomanwhop.html"
+        },
+        {
+            "productName": "Wiener Sandwich",
+            "imageName": "Wiener Sandwich.jpg",
+            "description": "Caspers famous Lunchin Wiener Sandwich",
+            "price": 250,
+            "link": "wiener-sandwich.html"
+        },
+        {
+            "productName": "Scrom Doglin",
+            "imageName": "Scrom Doglin.jpg",
+            "description": "The wubungus maker himself.",
+            "price": 250,
+            "link": "scrom-doglin.html"
+        },
+        {
+            "productName": "Niv jumpscare",
+            "imageName": "Niv jumpscare.jpg",
+            "description": "Niv's famous jumpscare (Very Scary).",
+            "price": 250,
+            "link": "niv-jumpscare.html"
+        },
+        {
+            "productName": "Cibble bot",
+            "imageName": "Cibblebot.png",
+            "description": "This was made by sam",
+            "price": 200,
+            "link": "cibble-bot.html"
+        },
+        {
+            "productName": "moo",
+            "imageName": "moo.png",
+            "description": "This is the one and only,<br>Angular_moo.",
+            "price": 100,
+            "link": "moo.html"
+        },
+        {
+            "productName": "buke",
+            "imageName": "buke.jpg",
+            "description": "buke, taken by Angular_Moo.",
+            "price": 250,
+            "link": "buke.html"
+        },
+        {
+            "productName": "edimflomaexpokis",
+            "imageName": "edimflomaexpokis.png",
+            "description": "edimflomaexpokis, made by Damagmark.",
+            "price": 250,
+            "link": "edimflomaexpokis.html"
+        },
+        {
+            "productName": "Niv",
+            "imageName": "Niv.jpg",
+            "description": "Niv in the kitchen, taken by Casper",
+            "price": 250,
+            "link": "niv.html"
+        },
+        {
+            "productName": "Thom",
+            "imageName": "Thom.jpg",
+            "description": "Thomas French Person, taken by someone",
+            "price": 250,
+            "link": "thom.html"
+        },
+        {
+            "productName": "John Mugshot",
+            "imageName": "John Mugshot.jpg",
+            "description": "Johns Mugshot, taken by the police.",
+            "price": 250,
+            "link": "john-mugshot.html"
+        },
+        {
+            "productName": "uhleamaekluwpole",
+            "imageName": "uhleamaekluwpole.png",
+            "description": "uhleamaekluwpole, drawn by Damagmark.",
+            "price": 250,
+            "link": "uhleamaekluwpole.html"
+        },
+        {
+            "productName": "Casper walk",
+            "imageName": "Casper walk.jpg",
+            "description": "Casper taking a trip to the Amazon, taken by a friendly bear named Douglas Yokel.",
+            "price": 250,
+            "link": "casper-walk.html"
+        }
+    ]
+}
