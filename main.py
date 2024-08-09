@@ -40,6 +40,8 @@ def generateProductDisplays():
     countDracula = 0
 
     with open("templates/productDisplay.html") as templateFile, open("templates/products.html", "w") as productsTemplate:
+        print("<!-- Make change here -->", file=productsTemplate)
+        
         # Load the products file into a dictionary
         products = getProducts()
 
@@ -67,6 +69,8 @@ def generateProductDisplays():
         
         if not countDracula % 3 == 0:
             print("</div>", file=productsTemplate)
+
+    input("Please make a change in the templates/products.html file and press enter to continue.")
 
 # Generate links in the json
 def generateLinks():
