@@ -1,8 +1,8 @@
 :root {
     --white: #FFFFFF;
     --grey: #696969; /*nice*/
+    --greyer: #424242;
     --black: #000000;
-    --nav: #EFEFEF;
     --light: #ECEEFE;
     --lightish: #818CEA;
     --dark: #5061FF;
@@ -136,22 +136,30 @@ a:hover {
     font-size: inherit;
 }
 
-.button:hover, button:hover {
+.button:hover:not(.disabled), button:hover:not(.disabled) {
     background-color: var(--darker);
 }
 
-button:disabled {
+button.disabled, a.button.disabled {
     background-color: var(--grey);
+}
+
+.button.disabled:hover, button.disabled:hover {
+    background-color: var(--greyer);
 }
 
 button {
     transition: background-color 500ms;
 }
 
+div > button {
+    width: 100%;
+}
+
 /* Nav section */
 nav {
     overflow: hidden;
-    background-color: var(--nav);
+    background-color: var(--light);
     padding: 20px 20px;
     height: auto;
     display: flex;

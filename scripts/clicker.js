@@ -1,18 +1,21 @@
-var upgradeButton = document.getElementById("buyButton");
+var upgradeButton;
 var flare = "flare";
+var upgradePrice = 100
+var perclick = 1
 // variables
 
 // upgrade function
 function upgrade() {
-    if (getCB() >= price) {
+    if (check(upgradePrice)) {
         sounds["evil"].pause();
         sounds["evil"].currentTime = 0;
         sounds["evil"].play();
-        setCB(getCB() - price);
-        price *= 2;
+        changeCB(-upgradePrice);
+        upgradePrice *= 2;
         perclick = Math.round(perclick * 1.75);
     }
     updateCBDisplays()
+    priceCheck()
 }
 
 // on clicke
@@ -22,16 +25,18 @@ function buttonClick() {
     sounds[flare].currentTime = 0;
     sounds[flare].play();
     priceCheck();
-    console.log("it ran")
 }
 
 // checks vost against money to change button
 function priceCheck() {
-    upgradeButton.innerHTML = "Upgrade (" + price + ")";
-    if (getCB() >= price) {
-        upgradeButton.disabled = false;
+    upgradeButton.innerHTML = "Upgrade (" + upgradePrice + ")";
+    if (check(upgradePrice)) {
+        upgradeButton.classList.remove("disabled");
     } else {
-        upgradeButton.disabled = true;
+        upgradeButton.classList.add("disabled");
     }
-
 }
+
+setTimeout(function () {
+    upgradeButton = document.getElementById("buyButton")
+}, 1000)

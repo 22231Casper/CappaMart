@@ -3,13 +3,14 @@ var cartNumDisplays;
 var price;
 var perclick;
 var upgradeButton;
+var cartTotal = 0;
 
 var sounds = {
-    "click": new Audio("/sounds/Better Clicker Sound.mp3"),
-    "flare": new Audio("/sounds/flare_launch.mp3"),
-    "evil": new Audio("/sounds/Evil Laugh.mp3"),
-    "dunk": new Audio("/sounds/dunk.mp3"),
-    "giggle": new Audio("/sounds/giggle.mp3")   
+    "click": new Audio("/audio/Better Clicker Sound.mp3"),
+    "flare": new Audio("/audio/flare_launch.mp3"),
+    "evil": new Audio("/audio/Evil Laugh.mp3"),
+    "dunk": new Audio("/audio/dunk.mp3"),
+    "giggle": new Audio("/audio/giggle.mp3")
 };
 
 // Update the CappaBucks displays to show the current amount
@@ -36,10 +37,11 @@ function changeCB(amount) {
 }
 
 function CBDisplaysInit() {
+    if (!localStorage.getItem("CappaBucks")) {
+        setCB(1);
+    }
     // Get all displays on the page
     CBDisplays = document.getElementsByClassName("CBDisplay");
-    price = 100
-    perclick = 1
 
     // Update CappaBucks display once at the start
     updateCBDisplays();
@@ -48,14 +50,15 @@ function CBDisplaysInit() {
 // Cart
 function cartNumDisplaysInit() {
     if (!localStorage.getItem("cart")) {
-        resetCart()
+        resetCart();
     }
-    cartNumDisplays = document.getElementsByClassName("cartNumDisplay")
-    updateCartNumDisplays()
+    cartNumDisplays = document.getElementsByClassName("cartNumDisplay");
+    updateCartNumDisplays();
 }
 
 function resetCart() {
     localStorage.setItem("cart", JSON.stringify([]));
+    updateCartNumDisplays();
 }
 
 function getCart() {
@@ -63,91 +66,104 @@ function getCart() {
 }
 
 function addToCart(productName) {
-    cart = getCart()
+    cart = getCart();
 
     cartIndex = 0;
     if (cart.length) {
-        cartIndex = cart.length;      
+        cartIndex = cart.length;
     }
     cart[cartIndex] = productName;
     // Update local storage
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    updateCartNumDisplays()
+    updateCartNumDisplays();
 }
 
 function removeFromCart(productName) {
-    localStorage.setItem("cart", JSON.stringify(getCart().filter(item => item !== productName)));
-    updateCartNumDisplays()
+    var cart = getCart();
+    var newCart = [];
+
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i] == productName) {
+            console.log("Removing " + productName + " from cart")
+            productName = "";
+            continue;
+        }
+        console.log("Added the other thing");
+        newCart.push(cart[i]);
+    }
+    console.log(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    updateCartNumDisplays();
+    updateCartDisplay();
 }
 
 function buyProducts() {
-    for (let i = 0; i < getCart().length; i++) {
-        download(getCart()[i])
+    if (check(cartTotal)) {
+        changeCB(-cartTotal);
+        for (let i = 0; i < getCart().length; i++) {
+            download(getCart()[i]);
+        }
+        removeAllFromCart();
     }
-    removeAllFromCart()
 }
 
 function removeAllFromCart() {
-    for (let i = 0; i < getCart().length; i++) {
-        removeFromCart(getCart()[i])
-    }
+    resetCart();
+    updateCartDisplay();
 }
 
 function updateCartNumDisplays() {
-    cart = getCart()
+    cart = getCart();
     for (let i = 0; i < cartNumDisplays.length; i++) {
         cartNumDisplays[i].innerHTML = "Cart (" + cart.length + ")";
     }
 }
 
-function updateCartDisplay() {
-    cart = getCart()
-    
-    for (let i = 0; i < cart.length; i ++) {
-        console.log(cart[i] + " is in the cart.")
-        fetch("/templates/cartItem.html")
-        .then(res => res.text())
-        .then(text => {
-            
-        })
+function updateCartTotal() {
+    document.getElementById("cartTotal").innerHTML = "$CB: " + cartTotal;
+    cartPriceCheck();
+}
+
+function cartPriceCheck() {
+    console.log("Checking cart");
+    var cartButton = document.getElementById("buyButton");
+    console.log(cartButton)
+    if (check(cartTotal)) {
+        cartButton.classList.remove("disabled");
+    } else {
+        cartButton.classList.add("disabled");
     }
-    
-    fetch('/templates/cart.html')
-    .then(res => res.text())
-    .then(text => {
-        let oldelem = document.querySelector("div#cartDisplay");
-        let newelem = document.createElement("div");
-        newelem.innerHTML = text;
-        oldelem.parentNode.replaceChild(newelem,oldelem);
-    });
+}
+
+function check(amount) {
+    return getCB() >= amount;
 }
 
 function buyButton() {
-    funny2.play();
+    sounds["giggle"].play();
     buyProducts();
 }
 
 function download(file) {
-    // Creating an invisible element
-
-    let element = document.createElement('a');
-    element.setAttribute('href', '/images/' + file);
-    element.setAttribute('download', file);
+    let element = document.createElement("a");
+    element.setAttribute("href", "/images/" + file);
+    element.setAttribute("download", file);
     document.body.appendChild(element);
     element.click();
 
     document.body.removeChild(element);
 }
-// The main function that runs on every page
 
+// The main function that runs on every page
 function main() {
-    console.log("Main is running");
-    
+    var page = window.location.pathname.split("/").pop();
+    console.log("Main is running at " + page);
+
     // Initialise displays
-    CBDisplaysInit()
-    cartNumDisplaysInit()
-    
+    CBDisplaysInit();
+    cartNumDisplaysInit();
+
     // Change all delay_name scripts to actual scripts
     var allScripts = document.getElementsByTagName("script");
     for (let i = 0; i < allScripts.length; i++) {
@@ -156,12 +172,15 @@ function main() {
             continue;
         }
         if (scriptID.substring(0, 6) == "delay_") {
-            allScripts[i].setAttribute("src", "/scripts/" + scriptID.substring(6) + ".js");
+            allScripts[i].setAttribute(
+                "src",
+                "/scripts/" + scriptID.substring(6) + ".js",
+            );
         }
     }
 }
 
 // This event runs when the page has loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
     setTimeout(main, 1000);
-})
+});
