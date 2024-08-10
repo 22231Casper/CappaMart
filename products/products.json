@@ -20,7 +20,7 @@
             "featured": false,
             "clicks": 0,
             "new": false,
-            "popular": true
+            "popular": false
         },
         {
             "productName": "deshomanwhop",
@@ -31,7 +31,7 @@
             "featured": false,
             "clicks": 0,
             "new": true,
-            "popular": true
+            "popular": false
         },
         {
             "productName": "Wiener Sandwich",
@@ -40,9 +40,9 @@
             "price": 250,
             "link": "wiener-sandwich.html",
             "featured": true,
-            "clicks": 0,
+            "clicks": 100,
             "new": false,
-            "popular": false
+            "popular": true
         },
         {
             "productName": "Scrom Doglin",
@@ -62,9 +62,9 @@
             "price": 250,
             "link": "niv-jumpscare.html",
             "featured": false,
-            "clicks": 0,
+            "clicks": 50,
             "new": false,
-            "popular": false
+            "popular": true
         },
         {
             "productName": "Cibble bot",
@@ -73,7 +73,7 @@
             "price": 200,
             "link": "cibble-bot.html",
             "featured": false,
-            "clicks": 0,
+            "clicks": 2,
             "new": false,
             "popular": false
         },
@@ -108,7 +108,7 @@
             "featured": false,
             "clicks": 100,
             "new": false,
-            "popular": false
+            "popular": true
         },
         {
             "productName": "Niv",
@@ -129,7 +129,7 @@
             "link": "thom.html",
             "featured": true,
             "clicks": 0,
-            "new": false,
+            "new": true,
             "popular": false
         },
         {
@@ -162,7 +162,7 @@
             "link": "casper-walk.html",
             "featured": false,
             "clicks": 0,
-            "new": false,
+            "new": true,
             "popular": false
         }
     ]

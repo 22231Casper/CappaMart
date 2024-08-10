@@ -85,14 +85,11 @@ function removeFromCart(productName) {
 
     for (let i = 0; i < cart.length; i++) {
         if (cart[i] == productName) {
-            console.log("Removing " + productName + " from cart")
             productName = "";
             continue;
         }
-        console.log("Added the other thing");
         newCart.push(cart[i]);
     }
-    console.log(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
     updateCartNumDisplays();
     updateCartDisplay();
@@ -126,14 +123,17 @@ function updateCartTotal() {
 }
 
 function cartPriceCheck() {
-    console.log("Checking cart");
     var cartButton = document.getElementById("buyButton");
-    console.log(cartButton)
     if (check(cartTotal)) {
         cartButton.classList.remove("disabled");
     } else {
         cartButton.classList.add("disabled");
     }
+}
+
+function productClick(productName) {
+    sounds["click"].play();
+    console.log("Clicked " + productName)
 }
 
 function check(amount) {
@@ -182,5 +182,5 @@ function main() {
 
 // This event runs when the page has loaded
 document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(main, 1000);
+    setTimeout(main, 500);
 });

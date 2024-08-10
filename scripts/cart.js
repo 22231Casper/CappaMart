@@ -1,6 +1,4 @@
 function updateCartDisplay() {
-
-    console.log("Updating cart display")
     cart = getCart();
 
     var cartItems = [];
@@ -17,9 +15,7 @@ function updateCartDisplay() {
             products = JSON.parse(jsonGuff)["products"];
             let cartDisplay = document.getElementById("cartDisplay");
             // Remove all current children from cartDisplay
-            console.log("yup")
             while (cartDisplay.firstChild) {
-                console.log("Removing child")
                 cartDisplay.removeChild(cartDisplay.firstChild);
             }
             // For every product in the cart

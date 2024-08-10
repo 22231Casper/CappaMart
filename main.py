@@ -222,6 +222,19 @@ def updatePopularPage():
 
                         print("    " + line.rstrip(), file=popularPage)
 
+def updatePopular():
+    print("Updating popular products...")
+    products = getProducts()
+
+    # Find the top 3 most clicked on products without removing them
+    for product in products:
+        product["popular"] = False
+    
+    for i in range(3):
+        max(products, key=lambda x: -1 if x["popular"] else x["clicks"])["popular"] = True
+
+    updateProducts(products)
+
 # Change an attribute of a product
 def changeAttribute():
     print("Changing attribute...")
