@@ -30,6 +30,10 @@ body > *:not(nav) {
     display: block;
 }
 
+body > div {
+    margin: auto 0px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Newsreader", serif;
 }
@@ -84,6 +88,12 @@ div * {
 
 .segment > div.content {
     position: relative;
+}
+
+/* Titles */
+#titles {
+    width: 75%;
+    margin: 50px auto;
 }
 
 /* Flex */
