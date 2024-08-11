@@ -24,9 +24,8 @@ body {
     margin: 0px 0px;
 }
 
-body > *:not(nav) {
+* {
     text-align: center;
-    margin: 50px 50px;
 }
 
 body > div {
@@ -46,8 +45,7 @@ div * {
     margin: 0px 0px;
 }
 
-/* segment? */
-
+/* Segment */
 .segment {
     border-radius: 0%;
     border: 20px;
@@ -81,6 +79,10 @@ div * {
 
 .segment > div.content {
     position: relative;
+}
+
+.segment > div.content > * {
+    margin: 20px 0px;
 }
 
 /* Watermark */
@@ -363,4 +365,44 @@ div:has(.cartItem) :last-child {
 
 .highlight > * {
     padding: 20px 20px;
+}
+
+/* Footer */
+footer {
+    margin: 0px 0px;
+    padding: 50px;
+    background-color: var(--light);
+    display: flex;
+    justify-content: space-around;
+}
+
+footer > div {
+    display: flex;
+    justify-content: space-around;
+}
+
+footer > :first-child {
+    flex-grow: 2;
+    flex-basis: 0;
+}
+
+footer > :last-child {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+footer h1 {
+    margin: auto;
+}
+
+footer > div > div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 0;
+    justify-content: space-around;
+}
+
+footer > div > div > * {
+    margin: 10px 10px;
 }
