@@ -30,7 +30,7 @@
             "link": "deshomanwhop.html",
             "featured": false,
             "clicks": 0,
-            "new": true,
+            "new": false,
             "popular": false
         },
         {
@@ -39,7 +39,7 @@
             "description": "Caspers famous Lunchin Wiener Sandwich",
             "price": 250,
             "link": "wiener-sandwich.html",
-            "featured": true,
+            "featured": false,
             "clicks": 100,
             "new": false,
             "popular": true
@@ -53,13 +53,13 @@
             "featured": false,
             "clicks": 0,
             "new": false,
-            "popular": false
+            "popular": true
         },
         {
             "productName": "Niv jumpscare",
             "imageName": "Niv jumpscare.jpg",
             "description": "Niv's famous jumpscare (Very Scary).",
-            "price": 250,
+            "price": 1000000,
             "link": "niv-jumpscare.html",
             "featured": false,
             "clicks": 50,
@@ -108,13 +108,13 @@
             "featured": false,
             "clicks": 100,
             "new": false,
-            "popular": true
+            "popular": false
         },
         {
             "productName": "Niv",
             "imageName": "Niv.jpg",
             "description": "Niv in the kitchen, taken by Casper",
-            "price": 250,
+            "price": 1000000,
             "link": "niv.html",
             "featured": false,
             "clicks": 0,
@@ -129,7 +129,7 @@
             "link": "thom.html",
             "featured": true,
             "clicks": 0,
-            "new": true,
+            "new": false,
             "popular": false
         },
         {
@@ -163,6 +163,94 @@
             "featured": false,
             "clicks": 0,
             "new": true,
+            "popular": false
+        },
+        {
+            "productName": "Group Photo",
+            "imageName": "Group Photo.jpg",
+            "description": "A group photo on the hills of Mt Tarawera.",
+            "price": 250,
+            "link": "group-photo.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Deep Fried Casper",
+            "imageName": "Deep Fried Casper.png",
+            "description": "Casper's test image for his art project in the Lourve.",
+            "price": 250,
+            "link": "deep-fried-casper.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Open Mouth Niv",
+            "imageName": "Niv open mouth.png",
+            "description": "Selfie of Niv moments before munching on a Stargazy Pie.",
+            "price": 1000,
+            "link": "open-mouth-niv.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Noah's Xray",
+            "imageName": "Pain.jpg",
+            "description": "A diagram given by Noah to express his opinion on being a Product Manager.",
+            "price": 250,
+            "link": "noah's-xray.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Casper on Mount Everest",
+            "imageName": "Casper on Mount Everest.jpg",
+            "description": "Selfie of Casper taken on Mount Everest moments before his discovery of  .",
+            "price": 400,
+            "link": "casper-on-mount-everest.html",
+            "featured": false,
+            "clicks": 0,
+            "new": true,
+            "popular": false
+        },
+        {
+            "productName": "Group Walk",
+            "imageName": "Group walk.png",
+            "description": "Photo taken of the group on their way to steal the Declaration Of Independance.",
+            "price": 1000,
+            "link": "group-walk.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Three Egg In The Pan",
+            "imageName": "Three egg in the pan.jpg",
+            "description": "Photo taken of the mighty deity that begun the war on the wabungus.",
+            "price": 900,
+            "link": "group-walk.html",
+            "featured": false,
+            "clicks": 0,
+            "new": false,
+            "popular": false
+        },
+        {
+            "productName": "Niv Posing",
+            "imageName": "Niv posing.png",
+            "description": "Photo taken of Niv during his model days.",
+            "price": 1000,
+            "link": "group-walk.html",
+            "featured": true,
+            "clicks": 0,
+            "new": false,
             "popular": false
         }
     ]

@@ -1,17 +1,55 @@
 var CBDisplays;
 var cartNumDisplays;
-var price;
-var perclick;
-var upgradeButton;
-var cartTotal = 0;
 
 var sounds = {
     "click": new Audio("/audio/Better Clicker Sound.mp3"),
+    "upgrade": new Audio("/audio/Better Clicker Sound.mp3"),
+    "boowomp": new Audio("/audio/boowomp.mp3"),
+    "buy": new Audio("/audio/money.mp3"),
+    "lottery": new Audio("/audio/lottery.mp3"),
     "flare": new Audio("/audio/flare_launch.mp3"),
-    "evil": new Audio("/audio/Evil Laugh.mp3"),
+    "evil": new Audio("/audio/evil-laugh.mp3"),
     "dunk": new Audio("/audio/dunk.mp3"),
-    "giggle": new Audio("/audio/giggle.mp3")
+    "giggle": new Audio("/audio/giggle.mp3"),
+    "nummy pobcorn": new Audio("/audio/i-got-nummy-pobcorn.mp3"),
+    "drink": new Audio("/audio/noah-drink.mp3"),
+    "cappabot": new Audio("/audio/cappabot.mp3"),
+    "crash1": new Audio("/audio/crash1.mp3"),
+    "crash2": new Audio("/audio/crash2.mp3"),
+    "crash3": new Audio("/audio/crash3.mp3"),
+    "crash4": new Audio("/audio/crash4.mp3"),
+    "crash5": new Audio("/audio/crash5.mp3"),
+    "whip": new Audio("/audio/whip.mp3"),
+    "prank": new Audio("/audio/funny-prank.mp3"),
+    "prank2": new Audio("/audio/bathroom-prank2.mp3"),
+    "prank3": new Audio("/audio/bathroom-prank3.mp3")
 };
+
+function playSound(soundName) {
+    let sound = sounds[soundName];
+    sound.pause();
+    sound.currentTime = 0;
+    sound.play();
+}
+
+function evilNoise() {
+    // Do the thing
+    setTimeout(function() {
+        playSound("crash4")
+    }, 1000)
+
+    setTimeout(function() {
+        playSound("crash1")
+    }, 6000)
+
+    setTimeout(function() {
+        playSound("crash2")
+    }, 11000)
+
+    setTimeout(function() {
+        playSound("crash4")
+    }, 16000)
+}
 
 // Update the CappaBucks displays to show the current amount
 function updateCBDisplays() {
@@ -27,7 +65,7 @@ function getCB() {
 
 // Set the current amount of CappaBucks to the given amount
 function setCB(amount) {
-    localStorage.setItem("CappaBucks", amount);
+    localStorage.setItem("CappaBucks", Math.floor(amount));
     updateCBDisplays();
 }
 
@@ -117,12 +155,12 @@ function updateCartNumDisplays() {
     }
 }
 
-function updateCartTotal() {
+function updateCartTotal(cartTotal) {
     document.getElementById("cartTotal").innerHTML = "$CB: " + cartTotal;
-    cartPriceCheck();
+    cartPriceCheck(cartTotal);
 }
 
-function cartPriceCheck() {
+function cartPriceCheck(cartTotal) {
     var cartButton = document.getElementById("buyButton");
     if (check(cartTotal)) {
         cartButton.classList.remove("disabled");
@@ -132,8 +170,8 @@ function cartPriceCheck() {
 }
 
 function productClick(productName) {
-    sounds["click"].play();
-    console.log("Clicked " + productName)
+    playSound("click")
+    console.log("Clicked " + productName);
 }
 
 function check(amount) {
@@ -141,7 +179,7 @@ function check(amount) {
 }
 
 function buyButton() {
-    sounds["giggle"].play();
+    playSound("buy");
     buyProducts();
 }
 
@@ -153,6 +191,72 @@ function download(file) {
     element.click();
 
     document.body.removeChild(element);
+}
+
+function activateMoney() {
+    playSound("lottery")
+    let moneys = document.getElementsByClassName("money");
+
+    // Mega money jumpscare fr
+    activateCoins();
+    for (let i = 0; i < moneys.length; i++) {
+        moneys[i].style.display = "block";
+
+        setTimeout(function () {
+            moneys[i].style.display = "none";
+        }, 3700);
+    }
+}
+
+function activateCoins() {
+    // Get the coin image names
+    let coinNames = ["burger-coin.png", "coin.png", "coin2.png", "dabloon.png", "happy-coin.png", "big money.jpg", "gfgfg.jpg", "nfhf.jpg", "cart.jpg", "ai.webp", "gggggg.png", "ffffff.webp", "sash.webp"];
+
+    // Make a few coins on the page using random coin names
+    for (let i = 0; i < 100; i++) {
+        setTimeout(function() {makeCoin("/images/coin/" + coinNames[Math.floor(Math.random() * coinNames.length)]);}
+                   , i * 30);
+    }
+}
+
+function makeCoin(coinName) {
+    let coin = document.createElement("img");
+    
+    let x = Math.floor(Math.random() * 100);
+    let y = -50;
+    let xv = Math.random() - 0.5;
+    let yv = 0;
+
+    var gravity = 0.2;
+    var boingus = -0.1;
+    
+    coin.src = coinName;
+    coin.classList.add("coin");
+    document.body.appendChild(coin);
+    
+    let coinInterval = setInterval(function () {
+        if (x > 100 || x < 0) {
+            xv *= -1 - boingus;
+        }
+
+        if (y > 75) {
+            yv *= -1 - boingus;
+        }
+        
+        yv += gravity;
+        
+        y += yv;
+        x += xv;
+        
+        coin.style.left = x + "%";
+        coin.style.top = y + "%";
+    }, 20)
+    
+    // Remove the coin after a random amount of time
+    setTimeout(function () {
+        clearInterval(coinInterval)
+        document.body.removeChild(coin);
+    }, Math.random() * 1000 + 30000);
 }
 
 // The main function that runs on every page

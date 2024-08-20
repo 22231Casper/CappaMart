@@ -36,7 +36,8 @@ function updateCartDisplay() {
                     }
                 }
             }
-            updateCartTotal();
+            cartTotal -= 0;
+            updateCartTotal(cartTotal);
         });
     });
 }

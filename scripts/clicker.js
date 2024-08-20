@@ -1,29 +1,81 @@
+var clickerButton;
 var upgradeButton;
-var flare = "flare";
-var upgradePrice = 100
-var perclick = 1
-// variables
+var price;
+var removeEvil;
+var upgradePrice = 100;
+var perclick = 1;
+var evilIn = -1;
 
-// upgrade function
-function upgrade() {
-    if (check(upgradePrice)) {
-        sounds["evil"].pause();
-        sounds["evil"].currentTime = 0;
-        sounds["evil"].play();
-        changeCB(-upgradePrice);
-        upgradePrice *= 2;
-        perclick = Math.round(perclick * 1.75);
+// variables ^^^
+
+function exorcism() {
+    // Do the thing
+    if (clickerButton.classList.contains("yarg")) {
+        clickerButton.classList.remove("yarg");
+        playSound("whip");
+        let prankSounds = ["prank", "prank2", "prank3"]
+        let prankSound = prankSounds[Math.floor(Math.random()*prankSounds.length)]
+        setTimeout(function() {playSound(prankSound);}, 2000);
     }
-    updateCBDisplays()
-    priceCheck()
 }
 
 // on clicke
 function buttonClick() {
-    changeCB(perclick);
-    sounds[flare].pause();
-    sounds[flare].currentTime = 0;
-    sounds[flare].play();
+    // If lottery is in the classList
+    if (clickerButton.classList.contains("lottery")) {
+        changeCB(perclick * (Math.random() * 10 + 20));
+        activateMoney();
+        clickerButton.classList.remove("lottery");
+    } else if (clickerButton.classList.contains("yarg")) {
+        setCB(0);
+        playSound("evil");
+        evilNoise();
+        clickerButton.classList.remove("yarg");
+    } else if ((Math.random()) < 0.02) {
+        changeCB(-perclick*2);
+        playSound("boowomp");
+    } else {
+        changeCB(perclick);
+        playSound("click");
+    }
+    priceCheck();
+    
+    // lottery
+    randNum = Math.random()
+    let classToAdd = ""
+    
+    if (randNum > 1 - (1/100)) {
+        classToAdd = "lottery";
+    } else if (randNum < (1/200)) {
+        setTimeout(function() {evilIn = 3;}, 1000);
+        classToAdd = "evilSoon";
+    }
+    if (classToAdd) {
+        clickerButton.classList.add(classToAdd);
+    }
+    
+    evil();
+}
+
+// if the evil when the yup
+function evil() {
+    if (evilIn == 0) {
+        evilIn = -1;
+        clickerButton.classList.remove("evilSoon");
+        clickerButton.classList.add("yarg");
+    } else {
+        evilIn -= 1;
+    }
+}
+
+// upgrade function
+function upgrade() {
+    if (check(upgradePrice)) {
+        playSound("upgrade");
+        changeCB(-upgradePrice);
+        upgradePrice *= 3;
+        perclick = Math.round(perclick * 2);
+    }
     priceCheck();
 }
 
@@ -37,6 +89,19 @@ function priceCheck() {
     }
 }
 
+// evil test for debugging
+function evilInTest() {
+    setInterval(function() {
+        console.log("evil in: " + evilIn)
+    }, 500)
+}
+
+function init() {
+    clickerButton = document.getElementById("clickerButton");
+    upgradeButton = document.getElementById("buyButton");
+    removeEvil = document.getElementById("removeEvil");
+}
+
 setTimeout(function () {
-    upgradeButton = document.getElementById("buyButton")
+    init();
 }, 1000)

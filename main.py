@@ -4,6 +4,9 @@ from colorama import Fore
 
 print("Starting main...")
 
+# Ignore these images when checking them
+ignoreImages = ["coin", "---imageName---", "car-crash.gif", "getting jiggy with it.mp4", "watermark.png", "watermarkBlack.png", "money dollar.gif"]
+
 def exit():
     global running
     running = False
@@ -264,6 +267,22 @@ def countAttribute():
             count += 1
 
     print(f"Total count of products with {attribute}: {count}")
+
+# Check if images need to be added to the json
+def checkImages():
+    print("Checking images...")
+    productImages = os.listdir("images/")
+    products = getProducts()
+
+    for productImage in productImages:
+        productFound = False
+        for product in products:
+            if product["imageName"] == productImage:
+                productFound = True
+                break
+
+        if not productFound and productImage not in ignoreImages:
+            print(f"Please add {productImage} to the products json")
 
 # Function for random guff
 def guff():

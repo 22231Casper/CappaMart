@@ -7,25 +7,27 @@
 <body>
     <!-- Navbar-->
     <script id="nav" src="/scripts/nav.js"></script>
-
-    <!-- Clicker script -->
-    <script src="/scripts/clicker.js"></script>
     
     <!-- Body -->
     <h1>CappaBucks</h1>
     <h3>Use headphones for the best experience</h3>
     
-     <div class="flex" style="justify-content: space-around;">
+    <!-- Clicker script -->
+    <script src="/scripts/clicker.js"></script>
+    
+    <div class="flex" style="justify-content: space-around;">
         <div>
-            <button style="border-radius: 200px;" onclick="buttonClick()"><img src="images/logo.png" height="50%"></button>
+            <button id="clickerButton" onclick="buttonClick();"><img src="images/logo.png" height="50%"></button>
         </div>
 
-        <div>
-            <button id="buyButton" onclick="upgrade()">Upgrade</button>
+        <div class="flex vertical upgrades">
+            <div><button id="buyButton" onclick="upgrade()">Upgrade</button></div>
+            <div><button id="removeEvil" onclick="exorcism()">Exorcise (A Crucifix)</button></div>
         </div>
-              
-     </div>
-
+    </div>
+    
+    <img class="money" src="/images/money dollar.gif">
+    
     <!-- Testing stuff -->
     
     <p>

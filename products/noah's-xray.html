@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Main script -->
+<script src="/scripts/main.js"></script>
+<!-- Head -->
+<script id="head" src="/scripts/head.js"></script>
+<body>
+    <!-- Navbar -->
+    <script id="nav" src="/scripts/nav.js"></script>
+
+    <!-- Title --> 
+    <h1>Noah's Xray</h1>
+
+    <!-- On click event script -->
+    <script>productClick("Noah's Xray")</script>
+
+    <hr>
+
+    <!-- Product -->
+    <div id="products">
+        <!-- Left side for image -->
+        <div class="left watermark">
+            <img style="height: fit-content;" src="/images/Pain.png">
+        </div>
+
+        <!-- Right div -->
+        <div class="right flex vertical" style="justify-content: start;">
+            <!-- At the top -->
+            <div class="top highlight">
+                <!-- Price -->
+                <div class="flex">
+                    <div class="left"><p>Cappa Mart price:</p></div>
+                    <div class="right"><p>$CB 250</p></div>
+                </div>
+                <!-- Buy button -->
+                <div class="flex">
+                    <button class="button flex" onclick="addToCart('Pain.png'); playSound('giggle')" style="width: 100%;">
+                        <p class="left">Add to Cart</p>
+                        <p class="right">&rarrlp;</p>
+                    </button>
+                </div>
+            </div>
+            <!-- Description -->
+            <p style="font-size: 30px; padding: 20px 20px;">A diagram given by Noah to express his opinion on being a Product Manager.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <script id="footer" src="/scripts/footer.js"></script>
+</body>
+
+</html>
