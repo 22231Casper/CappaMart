@@ -5,7 +5,7 @@ from colorama import Fore
 print("Starting main...")
 
 # Ignore these images when checking them
-ignoreImages = ["coin", "---imageName---", "car-crash.gif", "getting jiggy with it.mp4", "watermark.png", "watermarkBlack.png", "money dollar.gif"]
+ignoreImages = ["coin", "---imageName---", "car-crash.gif", "getting jiggy with it.mp4", "watermark.png", "watermarkBlack.png", "money dollar.gif", "cb.png", "logo.png"]
 
 def exit():
     global running

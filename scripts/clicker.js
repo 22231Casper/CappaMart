@@ -10,10 +10,16 @@ var evilIn = -1;
 
 function exorcism() {
     // Do the thing
-    if (clickerButton.classList.contains("yarg")) {
+    if (clickerButton.classList.contains("yarg") || clickerButton.classList.contains("evilSoon")) {
         clickerButton.classList.remove("yarg");
+        clickerButton.classList.remove("evilSoon");
+        evilIn = -1;
+        setTimeout(function() {evilIn = -1;}, 250);
+        setTimeout(function() {evilIn = -1;}, 500);
+        setTimeout(function() {evilIn = -1;}, 750);
+        setTimeout(function() {evilIn = -1;}, 1000);
         playSound("whip");
-        let prankSounds = ["prank", "prank2", "prank3"]
+        let prankSounds = ["prank", "prank2", "prank3"];
         let prankSound = prankSounds[Math.floor(Math.random()*prankSounds.length)]
         setTimeout(function() {playSound(prankSound);}, 2000);
     }
@@ -41,13 +47,13 @@ function buttonClick() {
     priceCheck();
     
     // lottery
-    randNum = Math.random()
-    let classToAdd = ""
+    randNum = Math.random();
+    let classToAdd = "";
     
-    if (randNum > 1 - (1/100)) {
+    if (randNum > 1 - (1/200)) {
         classToAdd = "lottery";
-    } else if (randNum < (1/200)) {
-        setTimeout(function() {evilIn = 3;}, 1000);
+    } else if (randNum < (1/400)) {
+        setTimeout(function() {evilIn = 10;}, 1000);
         classToAdd = "evilSoon";
     }
     if (classToAdd) {
@@ -59,12 +65,12 @@ function buttonClick() {
 
 // if the evil when the yup
 function evil() {
-    if (evilIn == 0) {
+    if (evilIn > 0) {
+        evilIn -= 1;
+    } else if (evilIn == 0) {
         evilIn = -1;
         clickerButton.classList.remove("evilSoon");
         clickerButton.classList.add("yarg");
-    } else {
-        evilIn -= 1;
     }
 }
 
@@ -96,10 +102,13 @@ function evilInTest() {
     }, 500)
 }
 
+// go gambling
+
 function init() {
     clickerButton = document.getElementById("clickerButton");
     upgradeButton = document.getElementById("buyButton");
     removeEvil = document.getElementById("removeEvil");
+    priceCheck();
 }
 
 setTimeout(function () {

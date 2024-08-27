@@ -1,5 +1,6 @@
 var CBDisplays;
 var cartNumDisplays;
+var mode = "light";
 
 var sounds = {
     "click": new Audio("/audio/Better Clicker Sound.mp3"),
@@ -22,7 +23,8 @@ var sounds = {
     "whip": new Audio("/audio/whip.mp3"),
     "prank": new Audio("/audio/funny-prank.mp3"),
     "prank2": new Audio("/audio/bathroom-prank2.mp3"),
-    "prank3": new Audio("/audio/bathroom-prank3.mp3")
+    "prank3": new Audio("/audio/bathroom-prank3.mp3"),
+    "holy": new Audio("/audio/holy.mp3")
 };
 
 function playSound(soundName) {
@@ -35,7 +37,7 @@ function playSound(soundName) {
 function evilNoise() {
     // Do the thing
     setTimeout(function() {
-        playSound("crash4")
+        playSound("crash3")
     }, 1000)
 
     setTimeout(function() {
@@ -123,7 +125,6 @@ function removeFromCart(productName) {
 
     for (let i = 0; i < cart.length; i++) {
         if (cart[i] == productName) {
-            productName = "";
             continue;
         }
         newCart.push(cart[i]);
@@ -135,6 +136,7 @@ function removeFromCart(productName) {
 
 function buyProducts() {
     if (check(cartTotal)) {
+        playSound("buy");
         changeCB(-cartTotal);
         for (let i = 0; i < getCart().length; i++) {
             download(getCart()[i]);
@@ -179,7 +181,6 @@ function check(amount) {
 }
 
 function buyButton() {
-    playSound("buy");
     buyProducts();
 }
 
@@ -212,10 +213,12 @@ function activateCoins() {
     // Get the coin image names
     let coinNames = ["burger-coin.png", "coin.png", "coin2.png", "dabloon.png", "happy-coin.png", "big money.jpg", "gfgfg.jpg", "nfhf.jpg", "cart.jpg", "ai.webp", "gggggg.png", "ffffff.webp", "sash.webp"];
 
+    let totalTime = 3; // In seconds
+    let totalCoins = 100;
     // Make a few coins on the page using random coin names
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < totalCoins; i++) {
         setTimeout(function() {makeCoin("/images/coin/" + coinNames[Math.floor(Math.random() * coinNames.length)]);}
-                   , i * 30);
+                   , (i-1) * totalTime*1000/totalCoins);
     }
 }
 
@@ -223,25 +226,30 @@ function makeCoin(coinName) {
     let coin = document.createElement("img");
     
     let x = Math.floor(Math.random() * 100);
-    let y = -50;
+    let y = -25;
     let xv = Math.random() - 0.5;
-    let yv = 0;
+    let yv = 1;
 
-    var gravity = 0.2;
-    var boingus = -0.1;
-    
+    var boingus = 0;
+    var gravity = 0.15;
+
+    if (coinName == undefined) {
+        coinName = "/images/coin/coin.png";
+    }
     coin.src = coinName;
     coin.classList.add("coin");
     document.body.appendChild(coin);
     
     let coinInterval = setInterval(function () {
+        // Collision left and right
         if (x > 100 || x < 0) {
             xv *= -1 - boingus;
         }
 
-        if (y > 75) {
+        // Collision for the ground
+        /*if (y > 100) {
             yv *= -1 - boingus;
-        }
+        }*/
         
         yv += gravity;
         
@@ -250,13 +258,46 @@ function makeCoin(coinName) {
         
         coin.style.left = x + "%";
         coin.style.top = y + "%";
-    }, 20)
+    }, 25)
     
-    // Remove the coin after a random amount of time
+    // Remove the coin after a bit of time
     setTimeout(function () {
         clearInterval(coinInterval)
         document.body.removeChild(coin);
-    }, Math.random() * 1000 + 30000);
+    }, 4000);
+}
+
+// Dark and light mode
+function changeMode(mode) {
+    // window.matchMedia('(prefers-color-scheme: dark)').matches
+    let root = document.querySelector(':root');
+
+    let keys =         ["--white", "--grey", "--greyer", "--black", "--light", "--lightish", "--dark", "--darker"];
+    
+    let lightColours = ["#FFFFFF", "#696969", "#424242", "#000000", "#ECEEFE", "#D4DEFF", "#5061FF", "#4051DF"];
+    
+    let darkColours =  ["#000000", "#696969", "#424242", "#FFFFFF", "#5061FF", "#4051DF", "#ECEEFE", "#D4DEFF"];
+
+    let lowContrast =  ["#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000"];
+
+    let colours = [];
+
+    if (mode == 0) {
+        colours = lightColours;
+    } else if (mode == 1) {
+        colours = darkColours;
+    } else if (mode == 2) {
+        colours = lowContrast;
+    } else {
+        console.log("Invalid mode");
+        changeMode(0);
+    }
+    
+    // set css variable
+    root.style.setProperty('--white', '#000000');
+    for (let i = 0; i < keys.length; i++) {
+        root.style.setProperty(keys[i], colours[i]);
+    }
 }
 
 // The main function that runs on every page
